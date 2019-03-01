@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">mayday</string>
+    <string name="default_floatingview_channel_id">default_floatingview_channel</string>
+    <string name="default_floatingview_channel_name">Default Channel</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="chathead_click_message">Click</string>
+    <string name="finish_deleted">FloatingView has been deleted</string>
+    <string name="deleted_soon">FloatingView will be deleted soon</string>
+    <string name="touch_finished_position">Current position (%d,%d)</string>
+    <string name="chathead_content_title">Chat: Active</string>
+    <string name="content_text">Running</string>
 </resources>
