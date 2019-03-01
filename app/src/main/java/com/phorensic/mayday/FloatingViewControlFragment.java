@@ -58,8 +58,8 @@ public class FloatingViewControlFragment extends Fragment {
                 showFloatingView(getActivity(), true, false);
             }
         });
-        
-        // 設定画面の表示
+
+        // View the Settings screen
         rootView.findViewById(R.id.show_settings).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
