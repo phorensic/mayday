@@ -15,9 +15,7 @@ public class FloatingViewSettingsFragment extends PreferenceFragmentCompat {
         return fragment;
     }
 
-    /**
-     * コンストラクタ
-     */
+    // Constructor
     public FloatingViewSettingsFragment() {
         // Required empty public constructor
     }
