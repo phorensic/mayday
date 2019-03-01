@@ -11,4 +11,6 @@
     <string name="touch_finished_position">Current position (%d,%d)</string>
     <string name="chathead_content_title">Chat: Active</string>
     <string name="content_text">Running</string>
+    <string name="show_demo">Show FloatingView</string>
+    <string name="show_settings">Settings</string>
 </resources>

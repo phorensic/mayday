@@ -41,6 +41,8 @@ public class ChatHeadService extends Service implements FloatingViewListener {
         final DisplayMetrics metrics = new DisplayMetrics();
         final WindowManager windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         windowManager.getDefaultDisplay().getMetrics(metrics);
+        // Important 5 lines below
+        // Setting the View to be displayed in the FloatingView
         final LayoutInflater inflater = LayoutInflater.from(this);
         final ImageView iconView = (ImageView) inflater.inflate(R.layout.widget_chathead, null, false);
         iconView.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +52,7 @@ public class ChatHeadService extends Service implements FloatingViewListener {
             }
         });
 
+        // Use the FloatingViewManager, make the setting of FloatingView
         mFloatingViewManager = new FloatingViewManager(this, this);
         mFloatingViewManager.setFixedTrashIconImage(R.drawable.ic_trash_fixed);
         mFloatingViewManager.setActionTrashIconImage(R.drawable.ic_trash_action);

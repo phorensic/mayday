@@ -23,61 +23,42 @@ import android.view.WindowManager;
 
 import jp.co.recruit_lifestyle.android.floatingview.FloatingViewManager;
 
-/**
- * FloatingViewのメイン画面となるフラグメントです。
- */
+// FloatingView main fragment
 public class FloatingViewControlFragment extends Fragment {
 
-    /**
-     * デバッグログ用のタグ
-     */
+    // TAG for debugging purposes
+    // Never used??
     private static final String TAG = "FloatingViewControl";
 
-    /**
-     * シンプルなFloatingViewを表示するフローのパーミッション許可コード
-     */
+    // Permission code for the overlay
     private static final int CHATHEAD_OVERLAY_PERMISSION_REQUEST_CODE = 100;
 
-    /**
-     * カスタマイズFloatingViewを表示するフローのパーミッション許可コード
-     */
-    private static final int CUSTOM_OVERLAY_PERMISSION_REQUEST_CODE = 101;
+    // Find and omit all references to the CUSTOM_OVERLAY
+    //private static final int CUSTOM_OVERLAY_PERMISSION_REQUEST_CODE = 101;
 
-    /**
-     * FloatingViewControlFragmentを生成します。
-     */
+    // Generate the FloatingViewControlFragment
     public static FloatingViewControlFragment newInstance() {
         final FloatingViewControlFragment fragment = new FloatingViewControlFragment();
         return fragment;
     }
 
-    /**
-     * コンストラクタ
-     */
+    // Constructor
     public FloatingViewControlFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_floating_view_control, container, false);
-        // デモの表示
+        // View the demo, in this case this is the real production thing,
+        // change references everywhere to replace word "demo"
         rootView.findViewById(R.id.show_demo).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showFloatingView(getActivity(), true, false);
             }
         });
-        // カスタマイズデモの表示
-        rootView.findViewById(R.id.show_customized_demo).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showFloatingView(getActivity(), true, true);
-            }
-        });
+        
         // 設定画面の表示
         rootView.findViewById(R.id.show_settings).setOnClickListener(new View.OnClickListener() {
             @Override
