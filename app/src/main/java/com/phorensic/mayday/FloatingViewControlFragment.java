@@ -33,9 +33,6 @@ public class FloatingViewControlFragment extends Fragment {
     // Permission code for the overlay
     private static final int CHATHEAD_OVERLAY_PERMISSION_REQUEST_CODE = 100;
 
-    // Find and omit all references to the CUSTOM_OVERLAY
-    //private static final int CUSTOM_OVERLAY_PERMISSION_REQUEST_CODE = 101;
-
     // Generate the FloatingViewControlFragment
     public static FloatingViewControlFragment newInstance() {
         final FloatingViewControlFragment fragment = new FloatingViewControlFragment();
@@ -73,44 +70,32 @@ public class FloatingViewControlFragment extends Fragment {
         return rootView;
     }
 
-    /**
-     * オーバレイ表示の許可を処理します。
-     */
+    // Process permission for overlay display
     @Override
     @TargetApi(Build.VERSION_CODES.M)
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == CHATHEAD_OVERLAY_PERMISSION_REQUEST_CODE) {
-            showFloatingView(getActivity(), false, false);
-        } else if (requestCode == CUSTOM_OVERLAY_PERMISSION_REQUEST_CODE) {
-            showFloatingView(getActivity(), false, true);
-        }
+        showFloatingView(getActivity(), false, false);
     }
 
     /**
-     * FloatingViewの表示
+     * Display FloatingView
      *
      * @param context                 Context
-     * @param isShowOverlayPermission 表示できなかった場合に表示許可の画面を表示するフラグ
+     * @param isShowOverlayPermission Flag for displaying the display permission screen when it can not be displayed
      * @param isCustomFloatingView    If true, it launches CustomFloatingViewService.
      */
     @SuppressLint("NewApi")
     private void showFloatingView(Context context, boolean isShowOverlayPermission, boolean isCustomFloatingView) {
-        // API22以下かチェック
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1) {
-            startFloatingViewService(getActivity(), isCustomFloatingView);
-            return;
-        }
-
-        // 他のアプリの上に表示できるかチェック
+        // Check if it can be displayed on other applications
         if (Settings.canDrawOverlays(context)) {
             startFloatingViewService(getActivity(), isCustomFloatingView);
             return;
         }
 
-        // オーバレイパーミッションの表示
+        // Display overlay permissions
         if (isShowOverlayPermission) {
             final Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + context.getPackageName()));
-            startActivityForResult(intent, isCustomFloatingView ? CUSTOM_OVERLAY_PERMISSION_REQUEST_CODE : CHATHEAD_OVERLAY_PERMISSION_REQUEST_CODE);
+            startActivityForResult(intent, CHATHEAD_OVERLAY_PERMISSION_REQUEST_CODE);
         }
     }
 
@@ -136,13 +121,8 @@ public class FloatingViewControlFragment extends Fragment {
         // launch service
         final Class<? extends Service> service;
         final String key;
-        if (isCustomFloatingView) {
-            service = CustomFloatingViewService.class;
-            key = CustomFloatingViewService.EXTRA_CUTOUT_SAFE_AREA;
-        } else {
-            service = ChatHeadService.class;
-            key = ChatHeadService.EXTRA_CUTOUT_SAFE_AREA;
-        }
+        service = ChatHeadService.class;
+        key = ChatHeadService.EXTRA_CUTOUT_SAFE_AREA;
         final Intent intent = new Intent(activity, service);
         intent.putExtra(key, FloatingViewManager.findCutoutSafeArea(activity));
         ContextCompat.startForegroundService(activity, intent);
