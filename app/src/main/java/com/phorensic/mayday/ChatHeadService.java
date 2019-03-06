@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import java.io.DataOutputStream;
+
 import jp.co.recruit_lifestyle.android.floatingview.FloatingViewListener;
 import jp.co.recruit_lifestyle.android.floatingview.FloatingViewManager;
 
@@ -49,6 +51,22 @@ public class ChatHeadService extends Service implements FloatingViewListener {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, getString(R.string.chathead_click_message));
+                try {
+                    Process process = Runtime.getRuntime().exec("su");
+                    DataOutputStream dataOutputStream = new DataOutputStream(process.getOutputStream());
+                    dataOutputStream.writeBytes("settings put global airplane_mode_on 1\n");
+                    dataOutputStream.writeBytes("am broadcast -a android.intent.action.AIRPLANE_MODE\n");
+                    Log.d(TAG, "Airplane mode ON");
+                    dataOutputStream.writeBytes("settings put global airplane_mode_on 0\n");
+                    dataOutputStream.writeBytes("am broadcast -a android.intent.action.AIRPLANE_MODE\n");
+                    Log.d(TAG, "Airplane mode OFF");
+                    dataOutputStream.flush();
+                    dataOutputStream.close();
+                    process.waitFor();
+                }
+                catch (Exception e) {
+                    Log.d(TAG, "Exception: "+e);
+                }
             }
         });
 
