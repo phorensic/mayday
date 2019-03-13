@@ -126,7 +126,7 @@ public class ChatHeadService extends Service implements FloatingViewListener {
     private static Notification createNotification(Context context) {
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(context, context.getString(R.string.default_floatingview_channel_id));
         builder.setWhen(System.currentTimeMillis());
-        builder.setSmallIcon(R.mipmap.ic_launcher);
+        builder.setSmallIcon(R.drawable.ic_stat_name);
         builder.setContentTitle(context.getString(R.string.chathead_content_title));
         builder.setContentText(context.getString(R.string.content_text));
         builder.setOngoing(true);
