@@ -86,6 +86,12 @@ public class FloatingViewControlFragment extends Fragment {
      */
     @SuppressLint("NewApi")
     private void showFloatingView(Context context, boolean isShowOverlayPermission, boolean isCustomFloatingView) {
+        // Check if API 22
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            startFloatingViewService(getActivity(), isCustomFloatingView);
+            return;
+        }
+
         // Check if it can be displayed on other applications
         if (Settings.canDrawOverlays(context)) {
             startFloatingViewService(getActivity(), isCustomFloatingView);
