@@ -39,6 +39,7 @@
         android:summary="@string/settings_summary_use_physics"
         android:title="@string/settings_title_use_physics"/>
 
+    <!-- This isn't working -->
     <SwitchPreference
         android:defaultValue="false"
         android:disableDependentsState="true"
