@@ -130,7 +130,7 @@ public class ChatHeadService extends Service implements FloatingViewListener {
         builder.setContentTitle(context.getString(R.string.chathead_content_title));
         builder.setContentText(context.getString(R.string.content_text));
         builder.setOngoing(true);
-        builder.setPriority(NotificationCompat.PRIORITY_MIN);
+        builder.setPriority(NotificationCompat.PRIORITY_MIN); // Backwards compat 7.1 and lower
         builder.setCategory(NotificationCompat.CATEGORY_SERVICE);
 
         return builder.build();
