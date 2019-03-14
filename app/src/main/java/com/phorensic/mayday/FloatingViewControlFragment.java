@@ -26,10 +26,6 @@ import jp.co.recruit_lifestyle.android.floatingview.FloatingViewManager;
 // FloatingView main fragment
 public class FloatingViewControlFragment extends Fragment {
 
-    // TAG for debugging purposes
-    // Never used??
-    private static final String TAG = "FloatingViewControl";
-
     // Permission code for the overlay
     private static final int CHATHEAD_OVERLAY_PERMISSION_REQUEST_CODE = 100;
 
